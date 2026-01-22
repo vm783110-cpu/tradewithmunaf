@@ -97,87 +97,95 @@
     }
 
     .subtitle{
-      margin:12px auto 18px;
+      margin:10px auto 14px;
       display:flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      font-size:18px;
+      font-size:16px;
       opacity:0.92;
-    }
-
-    .subtitle .tick{
-      font-size:22px;
     }
 
     .pills{
       display:flex;
       justify-content:center;
       gap:12px;
-      margin:8px 0 18px;
+      margin:8px 0 14px;
+      flex-wrap:wrap;
     }
 
     .pill{
       background:rgba(255,255,255,0.08);
       border:1px solid rgba(255,255,255,0.12);
-      padding:12px 18px;
+      padding:10px 14px;
       border-radius:14px;
       font-weight:700;
-      font-size:16px;
-      min-width:150px;
+      font-size:15px;
+      min-width:140px;
     }
 
+    /* Timer Box */
+    .timerBox{
+      margin:12px 0 16px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.10);
+      font-size:15px;
+      font-weight:700;
+      line-height:1.4;
+    }
+    .timerBox span{
+      color:#00d1ff;
+      font-weight:900;
+      font-size:18px;
+    }
+
+    /* Telegram Button - ORIGINAL STYLE */
     .tgBtn{
       width:100%;
       display:flex;
       justify-content:center;
-      margin:12px 0 18px;
+      margin:10px 0 18px;
     }
 
-    .tgBtn a{
+    .tgBtn button{
       width:100%;
-      text-decoration:none;
+      border:none;
+      cursor:pointer;
+      padding:16px 16px;
+      border-radius:16px;
+      font-size:20px;
+      font-weight:900;
+      color:#fff;
+      background:#2AABEE; /* Telegram official */
       display:flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      padding:18px 16px;
-      border-radius:18px;
-      font-size:22px;
-      font-weight:900;
-      color:white;
-      background:linear-gradient(135deg,#0077ff,#00c6ff);
-      box-shadow:0 0 0 rgba(0,198,255,0.0);
-      position:relative;
+      box-shadow:0 0 0 rgba(42,171,238,0.0);
       animation: hardBlink 0.55s infinite alternate, pulseGlow 0.8s infinite;
-      transform:translateZ(0);
     }
 
-    .tgBtn a:active{
+    .tgBtn button:active{
       transform:scale(0.98);
     }
 
+    .tgIcon{
+      width:26px;
+      height:26px;
+      display:inline-block;
+    }
+
     @keyframes hardBlink{
-      0%{
-        filter:brightness(1);
-        opacity:1;
-      }
-      100%{
-        filter:brightness(1.7);
-        opacity:0.65;
-      }
+      0%{filter:brightness(1);opacity:1;}
+      100%{filter:brightness(1.7);opacity:0.7;}
     }
 
     @keyframes pulseGlow{
-      0%{
-        box-shadow:0 0 0px rgba(0,198,255,0.0), 0 0 0px rgba(0,198,255,0.0);
-      }
-      50%{
-        box-shadow:0 0 25px rgba(0,198,255,0.65), 0 0 55px rgba(0,119,255,0.45);
-      }
-      100%{
-        box-shadow:0 0 0px rgba(0,198,255,0.0), 0 0 0px rgba(0,198,255,0.0);
-      }
+      0%{box-shadow:0 0 0px rgba(42,171,238,0.0);}
+      50%{box-shadow:0 0 28px rgba(42,171,238,0.65);}
+      100%{box-shadow:0 0 0px rgba(42,171,238,0.0);}
     }
 
     .features{
@@ -195,7 +203,7 @@
       border-radius:16px;
       background:rgba(255,255,255,0.06);
       border:1px solid rgba(255,255,255,0.10);
-      font-size:18px;
+      font-size:17px;
       font-weight:700;
       text-align:left;
     }
@@ -215,17 +223,17 @@
       box-shadow:0 0 18px rgba(0,255,153,0.35);
     }
 
-    .footerText{
-      margin-top:18px;
-      font-size:12px;
-      opacity:0.7;
-      line-height:1.4;
-    }
-
     .note{
       margin-top:12px;
       font-size:13px;
       opacity:0.75;
+    }
+
+    .footerText{
+      margin-top:16px;
+      font-size:12px;
+      opacity:0.7;
+      line-height:1.4;
     }
   </style>
 </head>
@@ -243,7 +251,7 @@
     </div>
 
     <div class="subtitle">
-      <span class="tick">✅</span>
+      <span>✅</span>
       <span>Trusted by thousands of learners</span>
     </div>
 
@@ -252,10 +260,22 @@
       <div class="pill">Free to Join</div>
     </div>
 
+    <!-- 10 sec timer -->
+    <div class="timerBox">
+      Auto joining in <span id="timer">10</span> seconds...<br/>
+      If not opened, click the button below 👇
+    </div>
+
+    <!-- Telegram Button -->
     <div class="tgBtn">
-      <a id="joinBtn" href="https://t.me/+PMq4xxG9gpkwOWI1" target="_blank" rel="noopener">
-        ✈️ Join on Telegram
-      </a>
+      <button id="joinBtn" type="button">
+        <svg class="tgIcon" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="120" cy="120" r="120" fill="white" opacity="0.15"/>
+          <path d="M200.5 63.4 171.8 196c-2.2 9.4-8.2 11.7-16.6 7.3l-46-33.9-22.2 21.4c-2.5 2.5-4.6 4.6-9.4 4.6l3.4-48.6 88.5-79.9c3.9-3.4-.9-5.3-6-1.9l-109.4 68.9-47.1-14.7c-10.2-3.2-10.4-10.2 2.1-15.1l184.1-71c8.5-3.1 15.9 2.1 13.1 15.3z"
+                fill="white"/>
+        </svg>
+        Join Telegram
+      </button>
     </div>
 
     <div class="features">
@@ -286,18 +306,38 @@
   </div>
 
   <script>
-    const btn = document.getElementById("joinBtn");
-    let clicked = false;
+    const TG_LINK = "https://t.me/+PMq4xxG9gpkwOWI1";
 
-    btn.addEventListener("click", function(event){
-      if(clicked){
-        event.preventDefault();
-        return;
-      }
-      clicked = true;
+    // Lead track + open telegram
+    function openTelegramWithLead(){
+      try{
+        if(typeof fbq === "function"){
+          fbq('track', 'Lead'); // ✅ Lead event
+        }
+      }catch(e){}
 
-      setTimeout(()=>{ clicked = false; }, 2000);
+      window.open(TG_LINK, "_blank");
+    }
+
+    // Button click
+    const joinBtn = document.getElementById("joinBtn");
+    joinBtn.addEventListener("click", function(){
+      openTelegramWithLead();
     });
+
+    // 10 sec timer auto open
+    let timeLeft = 10;
+    const timerEl = document.getElementById("timer");
+
+    const interval = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+
+      if(timeLeft <= 0){
+        clearInterval(interval);
+        openTelegramWithLead();
+      }
+    }, 1000);
   </script>
 
 </body>
